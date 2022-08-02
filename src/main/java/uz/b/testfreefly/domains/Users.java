@@ -24,7 +24,7 @@ public class Users {
 
 
     public enum Role{
-        DIRECTOR,MANAGER,USER;
+        DIRECTOR,MANAGER,USER,TICKETMAN;
     }
 }
 

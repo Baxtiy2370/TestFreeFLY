@@ -3,6 +3,7 @@ package uz.b.testfreefly.servlets.user;
 import uz.b.testfreefly.container.ApplicationContext;
 import uz.b.testfreefly.domains.Users;
 import uz.b.testfreefly.dto.LoginDTO;
+import uz.b.testfreefly.exceptions.BadRequestException;
 import uz.b.testfreefly.service.UserService;
 
 import javax.servlet.ServletException;
@@ -30,10 +31,12 @@ public class LogInServlet extends HttpServlet {
         Users login = userService.login(loginDTO);
         HttpSession session=req.getSession();
         session.setAttribute("userId",login.getId());
-
-
-
-
-        resp.sendRedirect("/");
+        Users.Role userRole = login.getRole();
+        switch (userRole){
+            case USER -> resp.sendRedirect("/");
+            case MANAGER -> resp.sendRedirect("/managerpage");
+            case DIRECTOR -> req.getRequestDispatcher("/views/auth/director.jsp").forward(req,resp);
+            case TICKETMAN -> resp.sendRedirect("/ticketmanpage");
+        }
     }
 }
