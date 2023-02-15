@@ -12,7 +12,10 @@
 <div class="row">
   <div class="col-6 offset-3">
     <form method="post">
-
+      <div class="form-group">
+        <label for="fullname">F.I.O</label>
+        <input type="email" class="form-control" id="fullname" name="fullname" placeholder="F.I.O" >
+      </div>
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="John Doe">
